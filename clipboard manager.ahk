@@ -5,7 +5,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 global register := []
 global bank := 0
-global MyEdit
 
 register := [] 
 Loop, 100
@@ -40,7 +39,9 @@ copyToRegister(index)
 {
 	global register
 	global bank
+	Clipboard := ""
 	send ^c
+	ClipWait, 5 ; Wait for max. 5 seconds
 	register[bank*10 + index-1] := clipboard
 	updateIndicator()
 }
@@ -74,7 +75,6 @@ showIndicator(){
 	Gui, Color, F0F0F0
 	Gui, Font, s0,
 	Gui, Add, Edit, vMyEdit w200 h220 -E0x200
-	; Gui, Add, Edit, vMyEdit w200 h220 -E0x200
 	Gui, Font, s15, Verdana
 	updateIndicator()
 	Gui, Show, x1600 y100 NoActivate
@@ -83,6 +83,7 @@ showIndicator(){
 updateIndicator(){
 	global bank
 	global register
+	global MyEdit
 	contents := ""
 	loop, 10 {
 		contents .= "`n" . A_Index . ": " . register[bank*10 + A_Index - 1]
