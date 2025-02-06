@@ -1,11 +1,11 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
+#Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 global register := []
 global bank := 0
-global MyEdits := []
+global MyEdit
 
 register := [] 
 Loop, 100
@@ -68,12 +68,13 @@ previousBank(){
 
 showIndicator(){
 	; source: https://www.autohotkey.com/boards/viewtopic.php?style=1&t=96934#p430774
+	global vMyEdit
 	Gui, +LastFound +AlwaysOnTop
 	Gui, % CLICKTHROUGH := "+E0x20"
 	Gui, Color, F0F0F0
 	Gui, Font, s0,
 	Gui, Add, Edit, vMyEdit w200 h220 -E0x200
-	Gui, Add, Edit, vMyEdit w200 h220 -E0x200
+	; Gui, Add, Edit, vMyEdit w200 h220 -E0x200
 	Gui, Font, s15, Verdana
 	updateIndicator()
 	Gui, Show, x1600 y100 NoActivate
