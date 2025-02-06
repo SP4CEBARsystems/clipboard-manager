@@ -59,14 +59,12 @@ nextBank(){
 	bank := Min(bank + 1, 10)
 	updateIndicator()
 }
-; MsgBox, 4096, , Bank Up: Current Bank: %bank%
 
 previousBank(){
 	global bank
 	bank := Max(bank - 1, 0)
 	updateIndicator()
 }
-; MsgBox, 4096, Bank Down, Current Bank: %bank%
 
 showIndicator(){
 	; source: https://www.autohotkey.com/boards/viewtopic.php?style=1&t=96934#p430774
@@ -80,12 +78,6 @@ showIndicator(){
 	updateIndicator()
 	Gui, Show, x1600 y100 NoActivate
 }
-; Gui, Color, White
-; Gui, +LastFound -Caption +AlwaysOnTop +ToolWindow -Border
-; Gui, Add, Text,, Current Bank: %bank%, contains %contained%
-; Gui, Add, Edit, vMyEdit HwndMyEditHwnd
-; Gui, Add, Picture,, %A_ScriptDir%\Reminder.png
-; WinSet, TransColor, White
 
 updateIndicator(){
 	global bank
@@ -96,5 +88,3 @@ updateIndicator(){
 	}
 	GuiControl,, MyEdit, Bank: %bank% contains %contents%
 }
-; GuiControl,,Var,%A_Index%
-; Current Bank: %bank%, contains %contained%
